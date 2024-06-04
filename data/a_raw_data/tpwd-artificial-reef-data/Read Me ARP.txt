@@ -1,0 +1,24 @@
+Texas Parks and Wildlife Department's (TPWD) Artificial Reef Sites
+Reef Site Name - common name of the reef site used within the TPWD Artificial Reef Program
+OCS Region - the federal Outer Continental Shelf region used by the Bureau of Safety and Environmental Enforcement and Bureau of Ocean Energy Management for oil and gas lease management
+Reef Structures - high level description of the materials in individual reef sites
+USACOE Permit - a USA Army Corps of Engineers permit must be help by TPWD for any and all construction and deployment actions. 
+USACOE Permit Approval - the original approval date of the USACOE permit
+USACOE Permit Expiration - most USACOE permits expire within 2 years. If the permit is expired at a reef site, it will not impact angler or diver use. However, oil and gas operators or public reefing project managers will need to work with TPWD to ensure the permit is renewed before deployment operations.
+TX GLO Surface Lease - reef sites within the 9 nautical mile region of the coast of Texas require an additional permit from the Texas General Land Office
+TX GLO SL Approval - the original approval date of the TX GLO surface lease
+TX GLO SL Expiration - the expiration date of the TX GLO surface lease. Most surface leases are good for at least 10 year, if not longer. As with the USACOE permit, should a deployment operation wish to take place at a reef site with an expired surface lease the project manager will need to work with TPWD to ensure the permit is renewed before operations occur. 
+Reef Site Dimension (ft) - the length of each side of the reef site in feet. In two cases, the dimension is the diameter of the reef site.
+Reef Size (acres) - the surface area PERMITTED. This is not the footprint of the material in the reef site, but the permitted boundary of the individual reef site.
+Water Depth (ft) - estimated water depth in feet at each reef site
+Profile of Material (ft) - profile or height of deployed material, in feet 
+Distance from Nearest Port (NM) - estimated distance, in nautical miles, from the closest port to the reef site
+Nearest Port - nearest port to the reef site
+TX State Waters - Yes or No - if a reef site is located within the 9 nautical miles of the Texas state coast, there will be a Y in the column
+USCG Clearance Required (ft) - required clearance, in feet, over the deployed reef material, as determined by the US Coast Guard
+PATON Buoy - Private Aids to Navigation (PATON) include lighted structures, beacons, and buoys. If the USCG requires a PATON buoy, this column will be marked as Permanent or Temporary.
+PATON Buoy Type - if the PATON buoy requires a light, it will be mentioned here
+PATON Buoy Number - this is the identification number registered with the USCG for each of the PATON buoys
+PATON Buoy Established - this date is the date on file with both the USCG and TPWD for the agreement to establish a private aid for navigation
+Longitude WGS84 - longitude of the center point of the individual reef site, provided in decimal degrees and UWGS84 Web Mercator
+Latitude WGS84- latitude of the center point of the individual reef site, provided in decimal degrees and UWGS84 Web Mercator

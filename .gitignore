@@ -2,3 +2,11 @@
 .Rhistory
 .RData
 .Ruserdata
+
+# data ignored due to:
+
+# being too large (>100MB) and cannot get hosted on GitHub:
+
+## AIS
+### 2018 - 2022
+data/a_raw_data/AISVesselTransitCounts*

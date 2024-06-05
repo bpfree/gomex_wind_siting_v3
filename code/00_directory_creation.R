@@ -1,5 +1,5 @@
 #############################
-### 0. Create Directories ###
+### 0. create directories ###
 #############################
 
 renv::init()

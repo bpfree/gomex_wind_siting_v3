@@ -1,5 +1,5 @@
 ######################################
-### 0. webscrape Data -- BOEM well ###
+### 0. webscrape data -- boreholes ###
 ######################################
 
 # clear environment
@@ -42,7 +42,7 @@ data_dir <- "data/a_raw_data"
 #####################################
 
 # webscrape set-up
-## Process uses RSelenium package (learn more about basics here: https://cran.r-project.org/web/packages/RSelenium/vignettes/basics.html)
+## process uses RSelenium package (learn more about basics here: https://cran.r-project.org/web/packages/RSelenium/vignettes/basics.html)
 ### another helpful tutorial: https://joshuamccrain.com/tutorials/web_scraping_R_selenium.html
 ### Firefox profile (based on this link: https://yizeng.me/2014/05/23/download-pdf-files-automatically-in-firefox-using-selenium-webdriver/)
 fprof <- RSelenium::makeFirefoxProfile(list(
@@ -81,14 +81,20 @@ remDr$open(silent = TRUE)
 #####################################
 #####################################
 
-# navigates to BOEM well data and scrapes the site data (source: https://www.data.boem.gov/Other/FileRequestSystem/WellData.aspx)
+# navigates to BOEM borehole dataset (source: https://www.data.boem.gov/Well/Borehole/Default.aspx)
+# and scrapes the site data for the states and regions of interest
+
+# load borehole data (source: https://www.data.boem.gov/Well/Borehole/Default.aspx)
+## query definitions: https://www.data.boem.gov/Well/Borehole/Default.aspx
+## metadata / field definitions: https://www.data.boem.gov/Main/HtmlPage.aspx?page=borehole
+## field values: https://www.data.boem.gov/Main/HtmlPage.aspx?page=boreholeFields
 
 # base URL
-base_url <- "https://www.data.boem.gov/Other/FileRequestSystem/WellData.aspx"
+base_url <- "https://www.data.boem.gov/Well/Borehole/Default.aspx"
 
 # navigate to page
 remDr$navigate(base_url)
-Sys.sleep(3)
+Sys.sleep(5)
 
 #####################################
 
@@ -98,17 +104,15 @@ Sys.sleep(2)
 
 #####################################
 
-# click "Download" toggle on side panel
-data_button <-remDr$findElement(using = "css selector",
-                                value = "#downloadMenu_label")
-data_button$clickElement()
+# click link to download mappackage
+csv_toggle <-remDr$findElement(using = "css selector",
+                               value = "#ASPxFormLayout2_btnCsvExport")
+csv_toggle$clickElement()
 
-download_toggle <-remDr$findElement(using = "css selector",
-                                    value = "#dijit_form_Button_2_label > b:nth-child(1) > span:nth-child(1)")
-download_toggle$clickElement()
+# wait 40 seconds (may need to change value depending on Internet speeds)
+Sys.sleep(40)
 
-Sys.sleep(100)
-
+#####################################
 #####################################
 
 # close RSelenium servers
@@ -118,10 +122,12 @@ rD$server$stop()
 #####################################
 #####################################
 
-# Move data to correct directory
+# view files in downloads folder to make sure file is there
+list.files(download_dir)
+
 file.rename(from=file.path(download_dir, list.files(download_dir, pattern = ".csv")),  # Make default download directory flexible
             # send to the raw data directory
-            to=file.path(data_dir, "deep_sea_coral_sponge.csv"))
+            to=file.path(data_dir, "borehole.csv"))
 
 #####################################
 #####################################

@@ -1,17 +1,17 @@
 #####################################################
-### 0. Webscrape Data -- protected resources data ###
+### 1. webscrape data -- protected resources data ###
 #####################################################
 
-# Clear environment
+# clear environment
 rm(list = ls())
 
-# Calculate start time of code (determine how long it takes to complete all code)
+# calculate start time of code (determine how long it takes to complete all code)
 start <- Sys.time()
 
 #####################################
 #####################################
 
-# Load packages
+# load packages
 if (!require("pacman")) install.packages("pacman")
 pacman::p_load(renv,
                dplyr,
@@ -31,7 +31,7 @@ pacman::p_load(renv,
 #####################################
 #####################################
 
-# Set directories
+# set directories
 ## download directory
 download_dir <- "~/downloads"
 
@@ -41,9 +41,9 @@ data_dir <- "data/a_raw_data"
 #####################################
 #####################################
 
-# Webscrape set-up
-## Process uses RSelenium package (learn more about basics here: https://cran.r-project.org/web/packages/RSelenium/vignettes/basics.html)
-### Another helpful tutorial: https://joshuamccrain.com/tutorials/web_scraping_R_selenium.html
+# webscrape set-up
+## process uses RSelenium package (learn more about basics here: https://cran.r-project.org/web/packages/RSelenium/vignettes/basics.html)
+### another helpful tutorial: https://joshuamccrain.com/tutorials/web_scraping_R_selenium.html
 ### Firefox profile (based on this link: https://yizeng.me/2014/05/23/download-pdf-files-automatically-in-firefox-using-selenium-webdriver/)
 fprof <- RSelenium::makeFirefoxProfile(list(
   # detail level for download (0 = Desktop, 1 = systems default downloads location, 2 = custom folder.)
@@ -61,7 +61,7 @@ fprof <- RSelenium::makeFirefoxProfile(list(
 
 #####################################
 
-# Launch RSelenium server and driver
+# launch RSelenium server and driver
 rD <- RSelenium::rsDriver(browser="firefox",
                           # set which version of browser
                           version = "latest",
@@ -74,26 +74,26 @@ rD <- RSelenium::rsDriver(browser="firefox",
                           # populate with the Firefox profile
                           extraCapabilities = fprof)
 
-## Remote driver
+## remote driver
 remDr <- rD[["client"]]
 remDr$open(silent = TRUE)
 
 #####################################
 #####################################
 
-# Navigates to protected resources data paper (paper: https://afspubs.onlinelibrary.wiley.com/doi/full/10.1002/mcf2.10246)
+# navigates to protected resources data paper (paper: https://afspubs.onlinelibrary.wiley.com/doi/full/10.1002/mcf2.10246)
 # and scrapes the site data for the supporting information (https://afspubs.onlinelibrary.wiley.com/action/downloadSupplement?doi=10.1002%2Fmcf2.10246&file=mcf210246-sup-0001-Files.zip)
 
-# Base URL
+# base URL
 base_url <- "https://afspubs.onlinelibrary.wiley.com/doi/full/10.1002/mcf2.10246"
 
-# Navigate to page
+# navigate to page
 remDr$navigate(base_url)
 Sys.sleep(3)
 
 #####################################
 
-# Prepare window
+# prepare window
 remDr$maxWindowSize()
 Sys.sleep(2)
 
@@ -129,7 +129,7 @@ Sys.sleep(10)
 
 #####################################
 
-# Close RSelenium servers
+# close RSelenium servers
 remDr$close()
 rD$server$stop()
 

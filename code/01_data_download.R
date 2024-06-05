@@ -1,5 +1,5 @@
 ########################
-### 0. Download Data ###
+### 1. download data ###
 ########################
 
 # clear environment
@@ -36,7 +36,7 @@ pacman::p_load(renv,
 ## to "pipe" a process, allowing for fluidity
 ## Can learn more here: https://style.tidyverse.org/pipes.html
 
-## Another common coding notation used is "::"
+## another common coding notation used is "::"
 ## For instance, you may encounter it as dplyr::filter()
 ## This means "use the filter function from the dplyr package"
 ## Notation is used given sometimes different packages have

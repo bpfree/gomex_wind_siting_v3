@@ -126,7 +126,7 @@ region_data_hex <- region_hex[region_data, ] %>%
   # group by the ID values as there are duplicates
   dplyr::group_by(GRID_ID) %>%
   # summarise the PRD combined layer by minimum of product
-  ## take the minimum value of the PRDR for any that overlap
+  ## take the minimum value of the PRD for any that overlap
   ## ***Note: this will provide the most conservation given that low
   ##          values are less desirable
   dplyr::summarise(prd_index = min(PRODUCT))
@@ -136,11 +136,11 @@ region_data_hex <- region_hex[region_data, ] %>%
 
 # export data
 ## constraints geopackage
-sf::st_write(obj = region_data_hex, dsn = submodel_gpkg, layer = stringr::str_glue("{region}_hex_{data_name}_{date}"), append = F)
+sf::st_write(obj = region_data_hex, dsn = submodel_gpkg, layer = stringr::str_glue("{region}_hex_{data_name}"), append = F)
 
 ## PRD geopackage
-sf::st_write(obj = data, dsn = output_gpkg, layer = stringr::str_glue("{data_name}_{date}"), append = F)
-sf::st_write(obj = region_data, dsn = output_gpkg, layer = stringr::str_glue("{region}_{data_name}_{date}"), append = F)
+sf::st_write(obj = data, dsn = output_gpkg, layer = stringr::str_glue("{data_name}"), append = F)
+sf::st_write(obj = region_data, dsn = output_gpkg, layer = stringr::str_glue("{region}_{data_name}"), append = F)
 
 #####################################
 #####################################

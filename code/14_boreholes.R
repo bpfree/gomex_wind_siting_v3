@@ -58,7 +58,7 @@ pacman::p_load(renv,
 # set directories
 ## define data directory (as this is an R Project, pathnames are simplified)
 ### input directories
-#### aids to navigation sites
+#### borehole sites
 data_dir <- "data/a_raw_data"
 
 #### study area grid
@@ -154,18 +154,18 @@ region_hex <- sf::st_read(dsn = study_region_gpkg, layer = stringr::str_glue("{r
 
 # limit data to study region
 region_data <- data %>%
-  # obtain only aids to navigation in the study area
+  # obtain only borehole in the study area
   rmapshaper::ms_clip(target = .,
                       clip = study_region) %>%
-  # create field called "layer" and fill with "aids to navigation" for summary
+  # create field called "layer" and fill with "borehole" for summary
   dplyr::mutate(layer = stringr::str_glue("{layer_name}"))
 
 #####################################
 #####################################
 
-# aids to navigation hex grids
+# borehole hex grids
 region_data_hex <- region_hex[region_data, ] %>%
-  # spatially join aids to navigation values to Westport hex cells
+  # spatially join borehole values to Gulf of Mexico hex cells
   sf::st_join(x = .,
               y = region_data,
               join = st_intersects) %>%

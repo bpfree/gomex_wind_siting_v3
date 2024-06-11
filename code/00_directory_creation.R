@@ -1,10 +1,10 @@
-#############################
-### 0. create directories ###
-#############################
+##############################
+### 00. create directories ###
+##############################
 
-renv::init()
-renv::update()
-renv::snapshot()
+# renv::init()
+# renv::update()
+# renv::snapshot()
 
 # create data directory
 data_dir <- dir.create("data")

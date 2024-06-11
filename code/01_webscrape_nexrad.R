@@ -1,6 +1,6 @@
-###################################
-### 1. webscrape data -- NEXRAD ###
-###################################
+####################################
+### 01. webscrape data -- NEXRAD ###
+####################################
 
 # clear environment
 rm(list = ls())
@@ -13,33 +13,20 @@ start <- Sys.time()
 
 # load packages
 if (!require("pacman")) install.packages("pacman")
-pacman::p_load(docxtractr,
+pacman::p_load(renv,
                dplyr,
-               elsa,
-               fasterize,
-               fs,
                ggplot2,
                janitor,
-               ncf,
-               paletteer,
-               pdftools,
                plyr,
                purrr,
-               raster,
-               RColorBrewer,
-               reshape2,
-               rgdal,
-               rgeoda,
-               rgeos,
                rmapshaper,
-               rnaturalearth, # use devtools::install_github("ropenscilabs/rnaturalearth") if packages does not install properly
                RSelenium,
                sf,
                sp,
                stringr,
+               targets,
                terra, # is replacing the raster package
-               tidyr,
-               tidyverse)
+               tidyr)
 
 #####################################
 #####################################

@@ -1,6 +1,6 @@
-########################
-### 1. download data ###
-########################
+#########################
+### 01. download data ###
+#########################
 
 # clear environment
 rm(list = ls())
@@ -206,6 +206,16 @@ download_list <- c(
   
   # wind submodel
   
+  ## bathymetry
+  ### central Gulf of Mexico (source: https://www.ngdc.noaa.gov/thredds/catalog/crm/cudem/catalog.html?dataset=crmDatasetScan/cudem/crm_vol4_2023.nc)
+  ### western Gulf of Mexico (source: https://www.ngdc.noaa.gov/thredds/catalog/crm/cudem/catalog.html?dataset=crmDatasetScan/cudem/crm_vol5_2023.nc)
+  #### NCEI: https://www.ncei.noaa.gov/metadata/geoportal/rest/metadata/item/gov.noaa.ngdc.mgg.dem%3A999901/html
+  #### metadata: https://www.ncei.noaa.gov/metadata/geoportal/rest/metadata/item/gov.noaa.ngdc.mgg.dem:999901/xml
+  #### For more United States coverage and spatial resolution information, visit: https://www.ncei.noaa.gov/products/coastal-relief-model
+  
+  "https://www.ngdc.noaa.gov/thredds/catalog/crm/cudem/catalog.html?dataset=crmDatasetScan/cudem/crm_vol4_2023.nc",
+  "https://www.ngdc.noaa.gov/thredds/catalog/crm/cudem/catalog.html?dataset=crmDatasetScan/cudem/crm_vol5_2023.nc",
+  
   #####################################
   
   # economics submodel
@@ -214,16 +224,16 @@ download_list <- c(
   
   # constraints
   
-  ## Louisiana permitted articifial reefs
-  ### nearshore
+  ## Louisiana permitted artificial reefs (source: https://www.wlf.louisiana.gov/page/artificial-reefs)
+  ### nearshore: https://www.wlf.louisiana.gov/assets/Fishing/Enhancing_Fish_Populations_Habitat/Files/LA_Nearshore_Coordinates_Oct23.pdf
   
   "https://www.wlf.louisiana.gov/assets/Fishing/Enhancing_Fish_Populations_Habitat/Files/LaNearshoreKML.kmz",
   
-  ### inshore
+  ### inshore: https://www.wlf.louisiana.gov/assets/Fishing/Enhancing_Fish_Populations_Habitat/Files/LA_Inshore_Coordinates_Oct23.pdf
   
   "https://www.wlf.louisiana.gov/assets/Fishing/Enhancing_Fish_Populations_Habitat/Files/LaInshoreKML.kmz",
   
-  ### offshore
+  ### offshore: https://www.wlf.louisiana.gov/assets/Fishing/Enhancing_Fish_Populations_Habitat/Files/LA_Offshore_Coordinates_Oct23.pdf
   
   "https://www.wlf.louisiana.gov/assets/Fishing/Enhancing_Fish_Populations_Habitat/Files/LaOffshoreKML.kmz",
   

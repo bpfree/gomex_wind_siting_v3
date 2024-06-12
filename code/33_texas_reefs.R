@@ -94,7 +94,8 @@ data <- read.csv(file.path(data_dir, "TPWD_ArtReefSites_Jan21.csv")) %>%
   # reproject the coordinate reference system
   sf::st_transform(crs) %>% # EPSG 5070 (https://epsg.io/5070)
   # create setback (buffer) of 304.8 meters (1000 feet)
-  sf::st_buffer(dist = setback)
+  sf::st_buffer(x = .,
+                dist = setback)
 
 ## inspect CRS values for the data
 cat(crs(data))

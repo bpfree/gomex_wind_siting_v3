@@ -242,7 +242,8 @@ download_list <- c(
   "https://tpwd.texas.gov/gis/resources/tpwd-artificial-reef-data.zip",
   
   ## shipping fairways (source: http://encdirect.noaa.gov/theme_layers/data/shipping_lanes/shippinglanes.zip)
-  ### Gulf of Mexico specific: https://www.data.boem.gov/Mapping/Files/Fairways.gdb.zip, metadata: https://www.data.boem.gov/Mapping/Files/fairways_meta.html
+  ### Gulf of Mexico specific: https://www.data.boem.gov/Mapping/Files/Fairways.gdb.zip
+  ### metadata: https://www.data.boem.gov/Mapping/Files/fairways_meta.html
   
   "http://encdirect.noaa.gov/theme_layers/data/shipping_lanes/shippinglanes.zip",
   

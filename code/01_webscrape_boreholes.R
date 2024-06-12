@@ -123,11 +123,11 @@ rD$server$stop()
 #####################################
 
 # view files in downloads folder to make sure file is there
-list.files(download_dir)
+list.files(download_dir, pattern = ".csv")
 
 file.rename(from=file.path(download_dir, list.files(download_dir, pattern = ".csv")),  # Make default download directory flexible
             # send to the raw data directory
-            to=file.path(data_dir, "borehole.csv"))
+            to=file.path(data_dir, stringr::str_glue("{data_name}.csv"))
 
 #####################################
 #####################################

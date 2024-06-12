@@ -289,6 +289,14 @@ download_list <- c(
   
   "https://marinecadastre.gov/downloads/data/mc/AtoN.zip",
   
+  ## BOEM drilling platform data (source: https://www.data.boem.gov/Mapping/Files/Platforms.gdb.zip)
+  ### Metadata: https://www.data.boem.gov/Mapping/Files/platform_meta.html
+  #### Note: These data came from the mapping page: https://www.data.boem.gov/Main/Mapping.aspx#ascii
+  #### Note: These data are different from the platform query page that BOEM has: https://www.data.boem.gov/Platform/PlatformStructures/Default.aspx
+  #### That query page seems to mirror the data that BSEE also has these data
+  
+  "https://www.data.boem.gov/Mapping/Files/Platforms.gdb.zip",
+  
   ## BOEM wind call areas data
   ### BOEM source (geodatabase): https://www.boem.gov/renewable-energy/boem-renewable-energy-geodatabase
   ### An online download link: https://www.boem.gov/renewable-energy/boem-renewable-energy-geodatabase

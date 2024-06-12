@@ -132,11 +132,7 @@ region_data_hex <- region_hex[region_data, ] %>%
               y = region_data,
               join = st_intersects) %>%
   # select fields of importance
-  dplyr::select(GRID_ID, layer) %>%
-  # group by ID values to flatten data
-  dplyr::group_by(GRID_ID) %>%
-  # summarise by ID
-  dplyr::summarise()
+  dplyr::select(GRID_ID, layer)
 
 #####################################
 #####################################

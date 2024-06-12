@@ -89,8 +89,8 @@ sf::st_layers(dsn = study_region_gpkg,
 ### metadata: https://www.fisheries.noaa.gov/inport/item/56120
 data <- sf::st_read(dsn = data_dir,
                                # aids to navigation site
-                               layer = sf::st_layers(data_dir)[[1]][grep(pattern = stringr::str_glue("{pattern}"),
-                                                                         x = sf::st_layers(data_dir)[[1]])]) %>%
+                               layer = sf::st_layers(dsn = data_dir)[[1]][grep(pattern = stringr::str_glue("{pattern}"),
+                                                                         x = sf::st_layers(dsn = data_dir)[[1]])]) %>%
   # change to correct coordinate reference system (EPSG:5070 -- NAD83 / CONUS Albers)
   sf::st_transform(x = .,
                    crs = crs) %>%
@@ -122,7 +122,11 @@ region_data <- data %>%
   rmapshaper::ms_clip(target = .,
                       clip = study_region) %>%
   # create field called "layer" and fill with "aids to navigation" for summary
-  dplyr::mutate(layer = stringr::str_glue("{layer_name}"))
+  dplyr::mutate(layer = stringr::str_glue("{layer_name}")) %>%
+  # group by ID values to flatten data
+  dplyr::group_by(layer) %>%
+  # summarise the grid values
+  dplyr::summarise()
 
 #####################################
 #####################################
@@ -134,11 +138,7 @@ region_data_hex <- region_hex[region_data, ] %>%
               y = region_data,
               join = st_intersects) %>%
   # select fields of importance
-  dplyr::select(GRID_ID, layer) %>%
-  # group by the ID values as there are duplicates
-  dplyr::group_by(GRID_ID) %>%
-  # summarise the grid values
-  dplyr::summarise()
+  dplyr::select(GRID_ID, layer)
 
 #####################################
 #####################################

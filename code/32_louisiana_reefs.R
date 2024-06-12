@@ -58,7 +58,7 @@ pacman::p_load(renv,
 # set directories
 ## define data directory (as this is an R Project, pathnames are simplified)
 ### input directories
-#### aids to navigation sites
+#### Louisiana permitted reefs sites
 data_dir <- "data/a_raw_data"
 
 #### study area grid
@@ -145,27 +145,27 @@ region_hex <- sf::st_read(dsn = study_region_gpkg, layer = stringr::str_glue("{r
 
 # limit data to study region
 region_data <- la_reef %>%
-  # obtain only aids to navigation in the study area
+  # obtain only Louisiana reefs in the study area
   rmapshaper::ms_clip(target = .,
                       clip = study_region) %>%
-  # create field called "layer" and fill with "aids to navigation" for summary
-  dplyr::mutate(layer = stringr::str_glue("{layer_name}"))
+  # create field called "layer" and fill with "Louisiana reefs" for summary
+  dplyr::mutate(layer = stringr::str_glue("{layer_name}")) %>%
+  # group by ID values to flatten data
+  dplyr::group_by(layer) %>%
+  # summarise the grid values
+  dplyr::summarise()
 
 #####################################
 #####################################
 
-# aids to navigation hex grids
+# Louisiana permitted artificial reefs hex grids
 region_data_hex <- region_hex[region_data, ] %>%
-  # spatially join aids to navigation values to Gulf of Mexico hex cells
+  # spatially join permitted artificial reefs values to Gulf of Mexico hex cells
   sf::st_join(x = .,
               y = region_data,
               join = st_intersects) %>%
   # select fields of importance
-  dplyr::select(GRID_ID, layer) %>%
-  # group by the ID values as there are duplicates
-  dplyr::group_by(GRID_ID) %>%
-  # summarise the grid values
-  dplyr::summarise()
+  dplyr::select(GRID_ID, layer)
 
 #####################################
 #####################################
@@ -179,7 +179,7 @@ sf::st_write(obj = la_inshore_reef, dsn = output_gpkg, layer = stringr::str_glue
 sf::st_write(obj = la_nearshore_reef, dsn = output_gpkg, layer = stringr::str_glue("{data_name}_nearshore"), append = F)
 sf::st_write(obj = la_offshore_reef, dsn = output_gpkg, layer = stringr::str_glue("{data_name}_offshore"), append = F)
 sf::st_write(obj = la_reef, dsn = output_gpkg, layer = stringr::str_glue("{data_name}"), append = F)
-sf::st_write(obj = region_data, dsn = output_gpkg, layer = stringr::str_glue("{region}_{data_name}"), apend = F)
+sf::st_write(obj = region_data, dsn = output_gpkg, layer = stringr::str_glue("{region}_{data_name}"), append = F)
 
 #####################################
 #####################################

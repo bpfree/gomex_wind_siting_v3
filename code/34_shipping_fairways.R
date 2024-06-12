@@ -88,7 +88,8 @@ data <- sf::st_read(file.path(data_dir, "shippinglanes.shp")) %>%
   # reproject the coordinate reference system
   sf::st_transform(crs) %>% # EPSG 5070 (https://epsg.io/5070)
   # create setback (buffer) of 3704 meters (2 nautical miles)
-  sf::st_buffer(dist = setback)
+  sf::st_buffer(x = .,
+                dist = setback)
 
 ## inspect CRS values for the data
 cat(crs(data))
@@ -139,7 +140,7 @@ region_data_hex <- region_hex[region_data, ] %>%
 ## constraints geopackage
 sf::st_write(obj = region_data_hex, dsn = submodel_gpkg, layer = stringr::str_glue("{region}_hex_{data_name}"), append = F)
 
-## Texas reefs geopackage
+## shipping fairways geopackage
 sf::st_write(obj = data, dsn = output_gpkg, layer = stringr::str_glue("{data_name}"), apend = F)
 sf::st_write(obj = region_data, dsn = output_gpkg, layer = stringr::str_glue("{region}_{data_name}"), apend = F)
 

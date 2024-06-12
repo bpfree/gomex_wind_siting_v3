@@ -55,8 +55,8 @@ sf::st_layers(dsn = data_dir,
 # load data
 ## submodel data (has hexes)
 hex_grid <- sf::st_read(dsn = data_dir,
-                        layer = sf::st_layers(data_dir)[[1]][grep(pattern = "Constraints",
-                                                                  sf::st_layers(dsn = data_dir, do_count = T)[[1]])]) %>%
+                        layer = sf::st_layers(dsn = data_dir)[[1]][grep(pattern = "Constraints",
+                                                                        x = sf::st_layers(dsn = data_dir)[[1]])]) %>%
   dplyr::select(GRID_ID)
 
 #####################################

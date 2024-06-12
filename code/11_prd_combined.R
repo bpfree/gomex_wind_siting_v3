@@ -123,7 +123,7 @@ region_data_hex <- region_hex[region_data, ] %>%
               join = st_intersects) %>%
   # select fields of importance
   dplyr::select(GRID_ID, layer, PRODUCT) %>%
-  # group by the ID values as there are duplicates
+  # group by ID values to flatten data
   dplyr::group_by(GRID_ID) %>%
   # summarise the PRD combined layer by minimum of product
   ## take the minimum value of the PRD for any that overlap

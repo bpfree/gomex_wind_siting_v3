@@ -21,7 +21,7 @@ submodel <- "constraints"
 ## layer names
 data_name <- "unexploded_ordnance"
 layer_name <- "unexploded ordnance"
-pattern <- "Munitions"
+pattern <- "MunitionsExplosivesConcern"
 
 ## coordinate reference system
 ### set the coordinate reference system that data should become (NAD83 / Conus Albers: https://epsg.io/5070)
@@ -57,7 +57,7 @@ pacman::p_load(renv,
 ## define data directory (as this is an R Project, pathnames are simplified)
 ### input directories
 #### unexploded ordnance sites
-data_dir <- "data/a_raw_data/MunitionsExplosivesConcern/MunitionsExplosivesConcern.gpkg"
+data_dir <- stringr::str_glue("data/a_raw_data/{pattern}/{pattern}.gpkg")
 
 #### study area grid
 study_region_gpkg <- stringr::str_glue("data/b_intermediate_data/{region}_study_area.gpkg")
@@ -141,7 +141,7 @@ region_data_hex <- region_hex[region_data, ] %>%
 ## constraints geopackage
 sf::st_write(obj = region_data_hex, dsn = submodel_gpkg, layer = stringr::str_glue("{region}_hex_{data_name}"), append = F)
 
-## Texas reefs geopackage
+## unexploded ordnance geopackage
 sf::st_write(obj = data, dsn = output_gpkg, layer = stringr::str_glue("{data_name}"), apend = F)
 sf::st_write(obj = region_data, dsn = output_gpkg, layer = stringr::str_glue("{region}_{data_name}"), apend = F)
 

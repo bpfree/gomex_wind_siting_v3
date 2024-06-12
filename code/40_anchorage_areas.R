@@ -21,7 +21,7 @@ submodel <- "constraints"
 ## layer names
 data_name <- "anchorage_area"
 layer_name <- "anchorage areas"
-pattern <- "Munitions"
+pattern <- "Anchorage"
 
 ## coordinate reference system
 ### set the coordinate reference system that data should become (NAD83 / Conus Albers: https://epsg.io/5070)
@@ -57,7 +57,7 @@ pacman::p_load(renv,
 ## define data directory (as this is an R Project, pathnames are simplified)
 ### input directories
 #### anchorage areas sites
-data_dir <- "data/a_raw_data/MunitionsExplosivesConcern/MunitionsExplosivesConcern.gpkg"
+data_dir <- stringr::str_glue("data/a_raw_data/{pattern}/{pattern}.gpkg")
 
 #### study area grid
 study_region_gpkg <- stringr::str_glue("data/b_intermediate_data/{region}_study_area.gpkg")
@@ -82,9 +82,9 @@ sf::st_layers(dsn = study_region_gpkg,
 #####################################
 
 # load data
-## read anchorage areas data (source: https://marinecadastre.gov/downloads/data/mc/MunitionsExplosivesConcern.zip)
-### MarineCadastre: https://marinecadastre-noaa.hub.arcgis.com/datasets/noaa::munitions-and-explosives-of-concern/about
-### metadata: https://www.fisheries.noaa.gov/inport/item/69013
+## read anchorage areas data (source: https://marinecadastre.gov/downloads/data/mc/Anchorage.zip)
+### MarineCadastre: https://marinecadastre-noaa.hub.arcgis.com/datasets/noaa::anchorages/about
+### metadata: https://www.fisheries.noaa.gov/inport/item/48849
 data <- sf::st_read(dsn = data_dir,
                     # anchorage areas
                     layer = sf::st_layers(dsn = data_dir)[[1]][grep(pattern = stringr::str_glue("{pattern}"),

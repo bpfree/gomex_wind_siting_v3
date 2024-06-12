@@ -21,11 +21,11 @@ submodel <- "industry_operations"
 ## layer names
 data_name <- "nexrad_sites"
 layer_name <- "nexrad sites"
-pattern <- "nexrad"
+pattern <- "nexrad_sites"
 
 ## setback distance (in meters)
-setback1 <- 35000
-setback2 <- 70000
+setback1 <- 35000 # 35km = 35000 meters
+setback2 <- 70000 # 70km = 70000 meters
 
 ## coordinate reference system
 ### set the coordinate reference system that data should become (NAD83 / Conus Albers: https://epsg.io/5070)
@@ -60,8 +60,8 @@ pacman::p_load(renv,
 # set directories
 ## define data directory (as this is an R Project, pathnames are simplified)
 ### input directories
-#### coral HAPC
-data_dir <- "data/a_raw_data/nexrad_sites.gpkg"
+#### NEXRAD sites
+data_dir <- stringr::str_glue("data/a_raw_data/{pattern}.gpkg")
 
 #### study area grid
 study_region_gpkg <- stringr::str_glue("data/b_intermediate_data/{region}_study_area.gpkg")
@@ -120,13 +120,15 @@ sf::st_crs(data, parameters = TRUE)$units_gdal
 
 # NEXRAD sites with 35 kilometer buffer
 nexrad35km <- data %>%
-  #  add a setback (buffer) distance of 35km (35,000 meters)
-  sf::st_buffer(dist = 35000)
+  # create setback (buffer) of 35 kilometers (35000 meters)
+  sf::st_buffer(x = .,
+                dist = 35000)
 
-# NEXRAD sites with 35 - 70 kilometer bufer
+# NEXRAD sites with 35 - 70 kilometer buffer
 nexrad35_70km <- data %>%
-  #  add a setback (buffer) distance of 70km (70,000 meters)
-  sf::st_buffer(dist = 70000) %>%
+  # create setback (buffer) of 70 kilometers (70000 meters)
+  sf::st_buffer(x = .,
+                dist = 70000) %>%
   # remove the 35km buffer
   rmapshaper::ms_erase(nexrad35km)
 

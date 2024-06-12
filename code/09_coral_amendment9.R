@@ -24,8 +24,7 @@ data_name <- "coral_amend9"
 data_amend9_regs <- "amendment9_regs"
 data_amend9_noregs <- "amendment9_noregs"
 
-layer_amend9_regs <- "Amendment 9 with regulations"
-layer_amend9_noregs <- "Amendment 9 without regulations"
+layer_name <- "Amendment 9"
 
 ## geopackage name
 gpkg_name <- "coral_amendment9"
@@ -143,15 +142,19 @@ region_hex <- sf::st_read(dsn = study_region_gpkg, layer = stringr::str_glue("{r
 ## Amendment 9 with regulations
 region_amend9_regs <- clean_coral_function(coral_data = amend9_regs,
                                            study_region = study_region,
-                                           layer_name = layer_amend9_regs)
+                                           layer_name = layer_name)
 
 ## Amendment 9 without regulations
 region_amend9_noregs <- clean_coral_function(coral_data = amend9_noregs,
                                              study_region = study_region,
-                                             layer_name = layer_amend9_noregs)
+                                             layer_name = layer_name)
 
 region_data <- rbind(region_amend9_regs,
-                     region_amend9_noregs)
+                     region_amend9_noregs) %>%
+  # group by ID values to flatten data
+  dplyr::group_by(layer) %>%
+  # summarise the grid values
+  dplyr::summarise()
 
 #####################################
 #####################################

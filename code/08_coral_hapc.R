@@ -24,8 +24,7 @@ data_name <- "coral_hapc"
 data_hapc_regs <- "coral_hapc_regs"
 data_hapc_noregs <- "coral_hapc_noregs"
 
-layer_hapc_regs <- "HAPC with regulations"
-layer_hapc_noregs <- "HAPC without regulations"
+layer_name <- "coral_hapc"
 
 ## geopackage name
 gpkg_name <- "coral_hapc"
@@ -143,16 +142,20 @@ region_hex <- sf::st_read(dsn = study_region_gpkg, layer = stringr::str_glue("{r
 ## HAPC with regulations
 region_hapc_regs <- clean_coral_function(coral_data = hapc_regs,
                                          study_region = study_region,
-                                         layer_name = layer_hapc_regs)
+                                         layer_name = layer_name)
 
 ## HAPC with no regulations
 region_hapc_noregs <- clean_coral_function(coral_data = hapc_noregs,
                                            study_region = study_region,
-                                           layer_name = layer_hapc_noregs)
+                                           layer_name = layer_name)
 
 ## combined HAPC
 region_data <- rbind(region_hapc_regs,
-                     region_hapc_noregs)
+                     region_hapc_noregs) %>%
+  # group by ID values to flatten data
+  dplyr::group_by(layer) %>%
+  # summarise the grid values
+  dplyr::summarise()
 
 #####################################
 #####################################

@@ -86,9 +86,8 @@ sf::st_layers(dsn = study_region_gpkg,
 ### metadata: https://www.fisheries.noaa.gov/inport/item/55364
 data <- sf::st_read(dsn = data_dir,
                     # military operating areas site
-                    layer = sf::st_layers(data_dir)[[1]][grep(pattern = stringr::str_glue("{pattern}"),
-                                                               sf::st_layers(dsn = data_dir,
-                                                                             do_count = T)[[1]])]) %>%
+                    layer = sf::st_layers(dsn = data_dir)[[1]][grep(pattern = stringr::str_glue("{pattern}"),
+                                                                    x = sf::st_layers(dsn = data_dir)[[1]])]) %>%
   # change to correct coordinate reference system (EPSG:5070 -- NAD83 / CONUS Albers)
   sf::st_transform(x = .,
                    crs = crs)
@@ -117,7 +116,11 @@ region_data <- data %>%
   rmapshaper::ms_clip(target = .,
                       clip = study_region) %>%
   # create field called "layer" and fill with "military operating areas" for summary
-  dplyr::mutate(layer = stringr::str_glue("{layer_name}"))
+  dplyr::mutate(layer = stringr::str_glue("{layer_name}")) %>%
+  # group by ID values to flatten data
+  dplyr::group_by(layer) %>%
+  # summarise the grid values
+  dplyr::summarise()
 
 #####################################
 #####################################

@@ -102,9 +102,8 @@ sf::st_layers(dsn = study_region_gpkg,
 
 data <- sf::st_read(dsn = data_dir,
                     # NEXRAD sites
-                    layer = sf::st_layers(data_dir)[[1]][grep(pattern = stringr::str_glue("{pattern}"),
-                                                                              sf::st_layers(dsn = data_dir,
-                                                                                            do_count = T)[[1]])]) %>%
+                    layer = sf::st_layers(dsn = data_dir)[[1]][grep(pattern = stringr::str_glue("{pattern}"),
+                                                                    x = sf::st_layers(dsn = data_dir)[[1]])]) %>%
   # set the coordinate reference system to WGS84 [EPSG 4326 (https://epsg.io/4326)]
   sf::st_set_crs(st_crs("EPSG:4326")) %>%
   # change to correct coordinate reference system (EPSG:5070 -- NAD83 / CONUS Albers)

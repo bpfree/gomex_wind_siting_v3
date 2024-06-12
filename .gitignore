@@ -7,11 +7,29 @@
 
 # being too large (>100MB) and cannot get hosted on GitHub:
 
-## AIS
-### 2018 - 2022
+## raw data
+### Fisheries
+data/a_raw_data/Fisheries Submodel (CUI)
+data/a_raw_data/raw_data/Effort Pings
+data/a_data_data/raw_data/Raw ELB
+
+### Gulf of Mexico
+data/a_raw_data/GoMex 2024.gdb
+
+### AIS
+#### 2018 - 2022
 data/a_raw_data/AISVesselTransitCounts2018
 data/a_raw_data/AISVesselTransitCounts2019
 data/a_raw_data/AISVesselTransitCounts2020
 data/a_raw_data/AISVesselTransitCounts2021/AISVTC2021Atlantic*
 data/a_raw_data/AISVesselTransitCounts2022/AISVTC2022Atlantic*
 data/a_raw_data/AISVesselTransitCounts2022/AISVTC2022WestCoast*
+
+## intermediate data
+data/b_intermediate_data/gomex_aids_navigation.gpkg
+data/b_intermediate_data/gomex_study_area.gpkg
+
+## submodel data
+data/c_submodel_data/constraints.gpkg
+data/c_submodel_data/national_security.gpkg
+data/c_submodel_data/natural_cultural.gpkg

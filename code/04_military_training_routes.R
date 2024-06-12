@@ -97,6 +97,10 @@ data <- sf::st_read(dsn = data_dir) %>%
   sf::st_buffer(x = .,
                 dist = setback)
 
+g <- ggplot2::ggplot() +
+  ggplot2::geom_sf(data = data, color = "blue", fill= "NA")
+g
+
 ## inspect CRS values for the data
 cat(crs(data))
 
@@ -121,7 +125,11 @@ region_data <- data %>%
   rmapshaper::ms_clip(target = .,
                       clip = study_region) %>%
   # create field called "layer" and fill with "military training routes" for summary
-  dplyr::mutate(layer = stringr::str_glue("{layer_name}"))
+  dplyr::mutate(layer = stringr::str_glue("{layer_name}")) %>%
+  # group by ID values to flatten data
+  dplyr::group_by(layer) %>%
+  # summarise the grid values
+  dplyr::summarise()
 
 #####################################
 #####################################
@@ -134,7 +142,7 @@ region_data_hex <- region_hex[region_data, ] %>%
               join = st_intersects) %>%
   # select fields of importance
   dplyr::select(GRID_ID, layer) %>%
-  # group by the ID values as there are duplicates
+  # group by ID values to flatten data
   dplyr::group_by(GRID_ID) %>%
   # summarise by ID
   dplyr::summarise()

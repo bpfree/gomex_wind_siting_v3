@@ -124,15 +124,7 @@ data <- read.csv(paste(data_dir, "borehole.csv", sep = "/")) %>%
   dplyr::filter(!Status.Code %in% c("CNL", "PA", "ST")) %>%
 
   # add a setback (buffer) distance of 60.96 meters (200 feet) around the boreholes
-  sf::st_buffer(dist = setback) %>%
-  # create field called "layer" and fill with "borehole" for summary
-  dplyr::mutate(layer = stringr::str_glue("{layer_name}")) %>%
-  # group all features by the "layer" and "value" fields to then have a single feature
-  # "value" will get pulled in from the study area layer
-  dplyr::group_by(layer,
-                  value) %>%
-  # summarise data to obtain single feature
-  dplyr::summarise()
+  sf::st_buffer(dist = setback)
 
 ## inspect CRS values for the data
 cat(crs(data))
@@ -158,7 +150,11 @@ region_data <- data %>%
   rmapshaper::ms_clip(target = .,
                       clip = study_region) %>%
   # create field called "layer" and fill with "borehole" for summary
-  dplyr::mutate(layer = stringr::str_glue("{layer_name}"))
+  dplyr::mutate(layer = stringr::str_glue("{layer_name}")) %>%
+  # group by ID values to flatten data
+  dplyr::group_by(layer) %>%
+  # summarise the grid values
+  dplyr::summarise()
 
 #####################################
 #####################################

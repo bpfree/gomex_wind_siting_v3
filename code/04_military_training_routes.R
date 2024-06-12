@@ -93,7 +93,7 @@ data <- sf::st_read(dsn = data_dir) %>%
   # change to correct coordinate reference system (EPSG:5070 -- NAD83 / CONUS Albers)
   sf::st_transform(x = .,
                    crs = crs) %>%
-  # apply 19-kilometer setback
+  # create setback (buffer) of 19 kilometers (12 miles)
   sf::st_buffer(x = .,
                 dist = setback)
 

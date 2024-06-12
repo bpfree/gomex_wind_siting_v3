@@ -1,6 +1,6 @@
-###############################
+###########################
 ### 40. anchorage areas ###
-###############################
+###########################
 
 # clear environment
 rm(list = ls())
@@ -141,7 +141,7 @@ region_data_hex <- region_hex[region_data, ] %>%
 ## constraints geopackage
 sf::st_write(obj = region_data_hex, dsn = submodel_gpkg, layer = stringr::str_glue("{region}_hex_{data_name}"), append = F)
 
-## Texas reefs geopackage
+## anchorage geopackage
 sf::st_write(obj = data, dsn = output_gpkg, layer = stringr::str_glue("{data_name}"), apend = F)
 sf::st_write(obj = region_data, dsn = output_gpkg, layer = stringr::str_glue("{region}_{data_name}"), apend = F)
 

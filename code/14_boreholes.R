@@ -21,9 +21,10 @@ submodel <- "industry_operations"
 ## layer names
 data_name <- "boreholes"
 layer_name <- "boreholes"
+pattern <- "borehole"
 
 ## setback distance (in meters)
-setback <- 60.96 # equivalent to 500 feet
+setback <- 60.96 # equivalent to 200 feet
 
 ## coordinate reference system
 ### set the coordinate reference system that data should become (NAD83 / Conus Albers: https://epsg.io/5070)
@@ -59,7 +60,7 @@ pacman::p_load(renv,
 ## define data directory (as this is an R Project, pathnames are simplified)
 ### input directories
 #### borehole sites
-data_dir <- "data/a_raw_data"
+data_dir <- stringr::str_glue("data/a_raw_data/{pattern}.csv")
 
 #### study area grid
 study_region_gpkg <- stringr::str_glue("data/b_intermediate_data/{region}_study_area.gpkg")
@@ -74,9 +75,6 @@ output_gpkg <- stringr::str_glue("data/b_intermediate_data/{region}_{data_name}.
 #####################################
 
 # inspect layers within geopackages
-sf::st_layers(dsn = data_dir,
-              do_count = T)
-
 sf::st_layers(dsn = study_region_gpkg,
               do_count = T)
 
@@ -112,19 +110,20 @@ sf::st_layers(dsn = study_region_gpkg,
 ####   7.) S -- Strat test
 
 ## Data were up-to-date as of 05 June 2024
-data <- read.csv(paste(data_dir, "borehole.csv", sep = "/")) %>%
+data <- read.csv(data_dir) %>%
   # convert to simple feature
   sf::st_as_sf(coords = c("Surface.Longitude", "Surface.Latitude"),
                # According to BOEM, coordinate data are in NAD27 (EPSG:4267)
                crs = 4267) %>% # EPSG:4267 (https://epsg.io/4267)
   # reproject the coordinate reference system to match study area data (EPSG:5070)
-  sf::st_transform("EPSG:5070") %>% # EPSG 5070 (https://epsg.io/5070)
+  sf::st_transform(crs) %>% # EPSG 5070 (https://epsg.io/5070)
   # remove any boreholes that have been side tracked or permanently abandoned
   # return all not status codes CNL, PA and ST
   dplyr::filter(!Status.Code %in% c("CNL", "PA", "ST")) %>%
 
-  # add a setback (buffer) distance of 60.96 meters (200 feet) around the boreholes
-  sf::st_buffer(dist = setback)
+  # create setback (buffer) of 60.96 meters (200 feet)
+  sf::st_buffer(x = .,
+                dist = setback)
 
 ## inspect CRS values for the data
 cat(crs(data))

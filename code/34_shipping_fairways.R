@@ -84,7 +84,7 @@ sf::st_layers(dsn = study_region_gpkg,
 ## read shipping fairways (source: http://encdirect.noaa.gov/theme_layers/data/shipping_lanes/shippinglanes.zip)
 ### Gulf of Mexico specific: https://www.data.boem.gov/Mapping/Files/Fairways.gdb.zip
 ### metadata: https://www.data.boem.gov/Mapping/Files/fairways_meta.html
-data <- sf::st_read(file.path(data_dir, "shippinglanes.shp")) %>%
+data <- sf::st_read(dsn = data_dir) %>%
   # reproject the coordinate reference system
   sf::st_transform(crs) %>% # EPSG 5070 (https://epsg.io/5070)
   # create setback (buffer) of 3704 meters (2 nautical miles)

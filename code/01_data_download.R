@@ -299,7 +299,6 @@ download_list <- c(
   "https://mmis.doi.gov/boemmmis/downloads/layers/GOMSigSedBlocks_fgdb.zip",
   "https://mmis.doi.gov/boemmmis/downloads/layers/GOMSigSedBlocks_shp.zip",
   
-  
   ## oil and gas pipelines (source: https://www.data.boem.gov/Mapping/Files/Pipelines.gdb.zip)
   ### metadata: https://www.data.boem.gov/Mapping/Files/ppl_arcs_meta.html
   

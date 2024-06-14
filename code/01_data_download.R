@@ -224,6 +224,12 @@ download_list <- c(
   
   # constraints
   
+  ## Rice's whale core distribution (source: https://www.fisheries.noaa.gov/s3/2021-09/shapefile_Rices_whale_core_distribution_area_Jun19_SERO.zip)
+  ### NMFS: https://www.fisheries.noaa.gov/resource/map/rices-whale-core-distribution-area-map-gis-data
+  ### profile: https://www.fisheries.noaa.gov/species/rices-whale
+  
+  "https://www.fisheries.noaa.gov/s3/2021-09/shapefile_Rices_whale_core_distribution_area_Jun19_SERO.zip",
+  
   ## Louisiana permitted artificial reefs (source: https://www.wlf.louisiana.gov/page/artificial-reefs)
   ### nearshore: https://www.wlf.louisiana.gov/assets/Fishing/Enhancing_Fish_Populations_Habitat/Files/LA_Nearshore_Coordinates_Oct23.pdf
   
@@ -264,7 +270,35 @@ download_list <- c(
   ### metadata: https://mmis.doi.gov/boemmmis/metadata/PlanningAndAdministration/GOMSigSedBlocks.xml
   ### map: https://www.boem.gov/sites/default/files/documents/marine-minerals/Significant%20Sediment%20Resources%20in%20the%20Gulf%20of%20Mexico.pdf
   
+  ## ***Note: There are a few ways to obtain the data
+  ### 1.) BOEM Marine Mineral Mapping and Data page: https://www.boem.gov/marine-minerals/marine-minerals-mapping-and-data
+  ### Here you can download the geodatabase or shapefile for the Gulf of Mexico or the Atlantic
+  ###   - Geodatabase download link: https://mmis.doi.gov/boemmmis/downloads/layers/GOMSigSedBlocks_fgdb.zip
+  ###   - Shapefile download link: https://mmis.doi.gov/boemmmis/downloads/layers/GOMSigSedBlocks_shp.zip
+  ###   - Metadata: https://mmis.doi.gov/boemmmis/metadata/PlanningAndAdministration/GOMSigSedBlocks.xml
+  
+  ### 2.) Gulf of Mexico: https://www.boem.gov/marine-minerals/managing-multiple-uses-gulf-mexico
+  ###   - Shapefile download link: https://mmis.doi.gov/boemmmis/downloads/layers/GOMSigSedBlocks_shp.zip
+  
+  ### 3.) Marine Minerals Information System (https://mmis.doi.gov/BOEMMMIS/) -- interactive data and map portal
+  ### Metadata: https://mmis.doi.gov/BOEMMMIS/metadata/WAF/GOMSigSedBlocks.xml
+  ###   a.) Click the "Layers" option on the top left of the page
+  ###   b.) Expand the "Administrative & Planning"
+  ###   c.) Mark the "Gulf of Mexico OCS Blocks with Significant Sediment Resources"
+  ###     ***Note: If the layer name is greyed out, zoom in further on the map till the layer name becomes black.
+  ###              Now you can mark the layer and it should appear.
+  ###   d.) Click the "Downloads" option on the top left of the page
+  ###     ***Note: If too far zoomed out, page will notify you to zoom in further before being able to draw a boundary box
+  ###   e.) Click "Select Area to Download"
+  ###   f.) Mark boundary on the map for download area
+  ###     ***Note: Click points on map and closing by clicking on first point.
+  ###   g.) Once area has been chosen, choose file format (e.g., shapefile, geodatabase)
+  ###   h.) Select "Download"
+  ### ***NOTE: If entire dataset is desired, on layers page click the "Download Layer GDB" icon next to layer name
+  
   "https://mmis.doi.gov/boemmmis/downloads/layers/GOMSigSedBlocks_fgdb.zip",
+  "https://mmis.doi.gov/boemmmis/downloads/layers/GOMSigSedBlocks_shp.zip",
+  
   
   ## oil and gas pipelines (source: https://www.data.boem.gov/Mapping/Files/Pipelines.gdb.zip)
   ### metadata: https://www.data.boem.gov/Mapping/Files/ppl_arcs_meta.html
@@ -299,7 +333,7 @@ download_list <- c(
   
   ## BOEM wind call areas data
   ### BOEM source (geodatabase): https://www.boem.gov/renewable-energy/boem-renewable-energy-geodatabase
-  ### An online download link: https://www.boem.gov/renewable-energy/boem-renewable-energy-geodatabase
+  ### An online download link: https://www.boem.gov/renewable-energy/mapping-and-data/renewable-energy-gis-data
   ### Metadata: https://www.arcgis.com/sharing/rest/content/items/709831444a234968966667d84bcc0357/info/metadata/metadata.xml?format=default&output=html
   #### ***Note: Data are also accessible for download on MarineCadastre (under "Active Renewable Energy Leases")
   #### This provides a usable URL for R: https://www.boem.gov/BOEM-Renewable-Energy-Geodatabase.zip

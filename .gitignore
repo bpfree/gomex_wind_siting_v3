@@ -25,6 +25,9 @@ data/a_raw_data/AISVesselTransitCounts2021/AISVTC2021Atlantic*
 data/a_raw_data/AISVesselTransitCounts2022/AISVTC2022Atlantic*
 data/a_raw_data/AISVesselTransitCounts2022/AISVTC2022WestCoast*
 
+### Rice's whale
+data/a_raw_data/NMFS_ESA_Critical_Habitat_20230505.gdb
+
 ## intermediate data
 data/b_intermediate_data/gomex_aids_navigation.gpkg
 data/b_intermediate_data/gomex_study_area.gpkg
